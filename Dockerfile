@@ -23,16 +23,16 @@ RUN apk add --update-cache \
     rm -rf /var/cache/apk/*
 
 RUN pip install --upgrade \
-        awscli==${AWS_CLI_VERSION} \
-        boto3==${BOTO3_VERSION} \
+        awscli=="${AWS_CLI_VERSION}" \
+        boto3=="${BOTO3_VERSION}" \
         pip \
         python-dateutil
 
 RUN ln -s /usr/bin/aws_bash_completer /etc/profile.d/aws_bash_completer.sh
 
-RUN curl -sSL --output ${S3_TMP} https://github.com/s3tools/s3cmd/archive/master.zip &&\
-    unzip -q ${S3_TMP} -d /tmp &&\
-    mv ${S3_ZIP}/S3 ${S3_ZIP}/s3cmd /usr/bin/ && \
+RUN curl -sSL --output "${S3_TMP}" https://github.com/s3tools/s3cmd/archive/master.zip &&\
+    unzip -q "${S3_TMP}" -d /tmp &&\
+    mv "${S3_ZIP}"/S3 "${S3_ZIP}"/s3cmd /usr/bin/ && \
     rm -rf /tmp/* &&\
     mkdir ~/.aws &&\
     chmod 700 ~/.aws
